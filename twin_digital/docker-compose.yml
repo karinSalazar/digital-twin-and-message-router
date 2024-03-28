@@ -1,0 +1,27 @@
+version: '3.0'  
+
+services:  
+
+  gemelo_digital:  
+    restart: always 
+    container_name: vehicle_digital_twin
+    image: digitaltwin_iot:latest
+    build: . 
+    ports:  
+      - "8000:8000" 
+    volumes:  
+      - ./code:/usr/src/app # Monta la carpeta local ./code en el directorio de trabajo del contenedor.
+
+  mytb:
+    restart: always
+    image: "thingsboard/tb-postgres"
+    ports:
+      - "8080:9090"
+      - "1883:1883"
+      - "7070:7070"
+      - "5683-5688:5683-5688/udp"
+    environment:
+      TB_QUEUE_TYPE: in-memory
+    volumes:
+      - ~/.mytb-data:/data
+      - ~/.mytb-logs:/var/log/thingsboard

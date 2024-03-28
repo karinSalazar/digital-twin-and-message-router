@@ -1,0 +1,11 @@
+version: '3.0'
+
+services:
+  message_router:
+    restart: always
+    container_name: message_route
+    image: message_router_image:latest
+    command: "python message_router.py"    
+    build: . 
+    ports:  
+      - "7071:3000" 

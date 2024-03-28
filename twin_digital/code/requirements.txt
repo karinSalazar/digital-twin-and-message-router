@@ -1,0 +1,7 @@
+requests==2.31.0
+rsa==4.7.2
+paho-mqtt
+tb-mqtt-client
+mmh3==4.1.0
+pymmh3
+cryptography
